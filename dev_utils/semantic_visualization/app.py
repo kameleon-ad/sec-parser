@@ -93,7 +93,7 @@ def visualize_html(html: Path | str, keep_structure: bool = False) -> str:
 
 @st.cache
 def get_html(url):
-    res = requests.get(url, headers=HEADERS)
+    res = requests.get(url, headers=HEADERS, timeout=60)
     res.raise_for_status()
     return res.text
 
