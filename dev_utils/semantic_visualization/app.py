@@ -8,6 +8,7 @@ import streamlit as st
 import sec_parser as sp
 from dev_utils.semantic_visualization.const import *
 from dev_utils.semantic_visualization.sp_utils import *
+from security import safe_requests
 
 
 def simple_coloring(
@@ -93,7 +94,7 @@ def visualize_html(html: Path | str, keep_structure: bool = False) -> str:
 
 @st.cache
 def get_html(url):
-    res = requests.get(url, headers=HEADERS)
+    res = safe_requests.get(url, headers=HEADERS)
     res.raise_for_status()
     return res.text
 
