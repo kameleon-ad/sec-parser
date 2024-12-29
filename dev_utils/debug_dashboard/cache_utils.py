@@ -7,6 +7,7 @@ import pickle
 import re
 from functools import wraps
 from typing import Any, Callable
+import fickling
 
 
 def _generate_filename(selected_kwargs: dict[str, Any], args_hash: str) -> str:
@@ -47,7 +48,7 @@ def cache_to_file(cache_by_keys: set[str], cache_dir: str) -> Callable:
 
             if os.path.exists(cache_file_path):
                 with open(cache_file_path, "rb") as f:
-                    result = pickle.load(f)
+                    result = fickling.load(f)
                     if isinstance(result, str) and not os.path.exists(
                         cache_file_path.replace(".pkl", ".txt"),
                     ):
